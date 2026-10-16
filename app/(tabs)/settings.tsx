@@ -110,7 +110,7 @@ export default function Settings() {
           onPress={() => void save()}
         />
       </Card>
-      {message && <Notice text={message} />}
+      {!!message && <Notice text={message} />}
       <Button
         secondary
         title="Notificações e zona de interesse"

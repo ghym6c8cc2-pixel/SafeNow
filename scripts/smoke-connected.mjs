@@ -21,6 +21,13 @@ try {
   const page = await context.newPage(),
     errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
+  page.on("console", (message) => {
+    if (
+      message.type() === "error" &&
+      /Unexpected text node|text strings must be rendered/i.test(message.text())
+    )
+      errors.push(message.text());
+  });
   await page.goto(base);
   await expect(page.getByLabel("E-mail", { exact: true })).toBeVisible();
   await expect(

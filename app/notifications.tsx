@@ -50,8 +50,8 @@ export default function Notifications() {
         Notificações
       </Heading>
       {query.isPending && <Loading />}
-      {query.isError && <Notice error text={friendlyError(query.error)} />}{" "}
-      {message && <Notice text={message} />}
+      {query.isError && <Notice error text={friendlyError(query.error)} />}
+      {!!message && <Notice text={message} />}
       <Card>
         <View style={s.row}>
           <Switch

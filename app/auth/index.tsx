@@ -115,9 +115,9 @@ export default function Access() {
               ? "Crie sua conta"
               : "Recupere seu acesso"}
         </Heading>
-        {session.notice && <Notice text={session.notice} />}
+        {!!session.notice && <Notice text={session.notice} />}
         {!configured && (
-          <Notice text="Supabase ainda não configurado. Use a demonstração local para explorar os fluxos com dados fictícios." />
+          <Notice text="Supabase ainda não configurado. Configure a URL e a chave publicável no arquivo .env conforme o README para acessar o aplicativo." />
         )}
         <Card>
           <Chips
@@ -182,7 +182,7 @@ export default function Access() {
               />
             </>
           )}
-          {message && <Notice text={message} error={isError} />}
+          {!!message && <Notice text={message} error={isError} />}
           <Button
             title={
               busy
@@ -197,7 +197,7 @@ export default function Access() {
             disabled={busy || !configured}
           />
         </Card>
-        {(!configured || process.env.EXPO_PUBLIC_DEMO_MODE === "true") && (
+        {process.env.EXPO_PUBLIC_DEMO_MODE === "true" && (
           <Button
             secondary
             title="Explorar demonstração local"

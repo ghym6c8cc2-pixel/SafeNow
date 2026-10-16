@@ -236,7 +236,7 @@ export default function IncidentMap(props: MapProps) {
         aria-label={title}
         style={{ width: "100%", height: "100%", isolation: "isolate" }}
       />
-      {error && (
+      {!!error && (
         <View style={{ position: "absolute", top: 12, left: 12, right: 12 }}>
           <Notice error text={error} />
         </View>

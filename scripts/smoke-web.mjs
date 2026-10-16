@@ -52,6 +52,16 @@ try {
   page.on("pageerror", (e) =>
     errors.push(page.url() + " " + (e.stack ?? e.message)),
   );
+  page.on("console", (message) => {
+    if (
+      message.type() === "error" &&
+      /Unexpected text node|text strings must be rendered/i.test(message.text())
+    )
+      errors.push(page.url() + " " + message.text());
+  });
+  await page.goto(`http://127.0.0.1:${port}`);
+  for (const mode of ["Cadastrar", "Recuperar", "Entrar"])
+    await page.getByRole("button", { name: mode, exact: true }).first().click();
   await page.goto(`http://127.0.0.1:${port}`);
   await page
     .getByRole("button", { name: "Explorar demonstração local", exact: true })

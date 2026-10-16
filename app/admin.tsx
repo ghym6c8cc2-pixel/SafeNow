@@ -274,9 +274,11 @@ export default function Admin() {
               <Body muted>
                 {new Date(entry.created_at).toLocaleString("pt-BR")}
               </Body>
-              {entry.target_id &&
-                (all.find((a) => a.id === entry.target_id)?.title ||
-                  accounts.find((u) => u.id === entry.target_id)?.name) && (
+              {!!entry.target_id &&
+                !!(
+                  all.find((a) => a.id === entry.target_id)?.title ||
+                  accounts.find((u) => u.id === entry.target_id)?.name
+                ) && (
                   <Body>
                     {all.find((a) => a.id === entry.target_id)?.title ??
                       accounts.find((u) => u.id === entry.target_id)?.name}

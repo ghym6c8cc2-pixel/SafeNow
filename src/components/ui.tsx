@@ -56,7 +56,7 @@ export function Heading({
       <Text accessibilityRole="header" style={s.heading}>
         {children}
       </Text>
-      {sub && <Text style={s.muted}>{sub}</Text>}
+      {!!sub && <Text style={s.muted}>{sub}</Text>}
     </View>
   );
 }

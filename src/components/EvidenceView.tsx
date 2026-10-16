@@ -30,7 +30,7 @@ export function EvidenceView({ evidence: e }: { evidence: Evidence }) {
         Abra somente se se sentir confortável. Não compartilhe informações que
         identifiquem outras pessoas.
       </Body>
-      {url && (
+      {!!url && (
         <Image
           accessibilityLabel="Evidência enviada pela comunidade, pode conter conteúdo sensível"
           source={{ uri: url }}
@@ -44,7 +44,7 @@ export function EvidenceView({ evidence: e }: { evidence: Evidence }) {
           }}
         />
       )}
-      {error && <Notice error text={error} />}
+      {!!error && <Notice error text={error} />}
       <Button
         secondary
         disabled={busy}
@@ -55,7 +55,7 @@ export function EvidenceView({ evidence: e }: { evidence: Evidence }) {
         }
         onPress={() => void show()}
       />
-      {url && (
+      {!!url && (
         <Button
           secondary
           title="Ocultar evidência"

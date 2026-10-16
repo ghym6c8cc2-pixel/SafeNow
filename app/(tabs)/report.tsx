@@ -156,7 +156,7 @@ export default function ReportScreen() {
         {review ? "Revise antes de publicar" : "Relatar ocorrência"}
       </Heading>
       <Notice text="O SafeNow não aciona equipes de emergência. Não se aproxime do perigo para registrar informações." />
-      {message && <Notice text={message} />}
+      {!!message && <Notice text={message} />}
       {review ? (
         <>
           <Card>

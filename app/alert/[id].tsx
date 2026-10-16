@@ -149,7 +149,7 @@ export default function Details() {
         </Body>
         <Body>{a.evidence_count} evidência(s)</Body>
       </Card>
-      {message && <Notice text={message} />}
+      {!!message && <Notice text={message} />}
       {!["spam", "deleted"].includes(a.status) && (
         <Card>
           <ContributionActions alert={a} own={own} />
@@ -237,9 +237,7 @@ export default function Details() {
       )}
       <Heading>Evidências</Heading>
       {detail.isPending && <Loading />}
-      {detail.isError && (
-        <Notice error text={friendlyError(detail.error)} />
-      )}{" "}
+      {detail.isError && <Notice error text={friendlyError(detail.error)} />}
       {!detail.isPending &&
         !detail.isError &&
         !detail.data?.evidence.length && (
@@ -298,7 +296,7 @@ export default function Details() {
           title="Consultar locais de apoio"
           onPress={() => router.push("/safe-places")}
         />
-      )}{" "}
+      )}
       {mayAdmin(profile) && (
         <Button title="Abrir moderação" onPress={() => router.push("/admin")} />
       )}

@@ -373,7 +373,7 @@ export function AccountManagement({
                   ]}
                 />
               )}
-              {(suspend || choice) && (
+              {(suspend || !!choice) && (
                 <Field
                   label={
                     suspend || choice === "other"

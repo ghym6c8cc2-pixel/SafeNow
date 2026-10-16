@@ -239,6 +239,13 @@ async function prepare(role = "admin") {
   });
   const page = await context.newPage();
   page.on("pageerror", (e) => errors.push(e.message));
+  page.on("console", (message) => {
+    if (
+      message.type() === "error" &&
+      /Unexpected text node|text strings must be rendered/i.test(message.text())
+    )
+      errors.push(message.text());
+  });
   return { context, page };
 }
 try {

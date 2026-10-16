@@ -219,7 +219,7 @@ export default function MapScreen() {
           </>
         )}
       </Card>
-      {error && <Notice text={error} error />}
+      {!!error && <Notice text={error} error />}
       {(alerts.isPending || categories.isPending) && <Loading />}
       {(alerts.isError || categories.isError) && (
         <>

@@ -6,7 +6,7 @@ Protótipo acadêmico de segurança urbana colaborativa para Android e iOS, com 
 
 ## Início rápido
 
-No Windows, com a pasta `dist` compilada, dê dois cliques em `Iniciar-SafeNow.cmd` e mantenha a janela aberta. Abra `http://localhost:3000` no navegador. O iniciador usa Node instalado ou o runtime Node deste computador incluído pelo Codex. `SafeNow-demo.zip` é uma demonstração separada: seus dados são locais e fictícios.
+No Windows, com a pasta `dist` compilada, dê dois cliques em `Iniciar-SafeNow.cmd` e mantenha a janela aberta. Abra `http://localhost:3000` no navegador. O iniciador usa Node instalado ou o runtime Node deste computador incluído pelo Codex.
 
 No projeto-fonte, `Iniciar-SafeNow.cmd` exige que `npm run export:web` já tenha gerado a pasta `dist`. A prévia serve apenas no loopback, sem expor o aplicativo na rede local. Para encerrar, feche a janela do iniciador.
 
@@ -22,7 +22,7 @@ npm start
 
 Para editar o projeto aberto no VS Code, use `Iniciar-Desenvolvimento.cmd` (Expo na porta 3000) ou `npm run web -- --port 3000`. Encerre a prévia antes de iniciar o desenvolvimento na mesma porta. Mudanças no código aparecem pelo Expo; a prévia compilada precisa de uma nova exportação. Consulte [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) para o estado da integração hospedada já verificada.
 
-No PowerShell, use `Copy-Item .env.example .env`. Sem credenciais, toque em **Explorar demonstração local**. Os dados são fictícios e persistem somente no dispositivo. A demonstração permite criar, corrigir, excluir, comentar e votar, mas **não simula autenticação Supabase, uploads, push ou poderes administrativos**. GPS exige permissão real; nos testes web, a posição é simulada pelo navegador de testes.
+No PowerShell, use `Copy-Item .env.example .env` e preencha a URL e a chave publicável do Supabase antes de iniciar. A versão normal usa login, cadastro e recuperação de senha; não oferece acesso por demonstração. Sem configuração, a tela informa o que está faltando e mantém o envio desabilitado. GPS exige permissão real; nos testes web, a posição é simulada pelo navegador de testes.
 
 ## Stack e organização
 
@@ -53,7 +53,7 @@ No `.env` do aplicativo:
 | `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Chave **publicável**, ou anon legada do ambiente local |
 | `EXPO_PUBLIC_EAS_PROJECT_ID` | ID do projeto EAS para Expo Push |
 | `GOOGLE_MAPS_ANDROID_API_KEY` | Maps SDK para Android; restrinja por package e certificado |
-| `EXPO_PUBLIC_DEMO_MODE` | `true` exibe também a opção de demo quando existe backend |
+| `EXPO_PUBLIC_DEMO_MODE` | Mantenha `false` no uso normal. `true` habilita somente o ambiente local dos testes E2E, sem contas ou banco reais. |
 
 Variáveis `EXPO_PUBLIC_*` entram no bundle. **Nunca coloque service_role, senha do banco, chave de assinatura ou segredo do worker nelas.** Os scripts de servidor usam `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY` e `SUPABASE_DB_URL` somente no processo de execução. Não grave esses valores no repositório nem no app config. Não há credenciais incluídas.
 
@@ -218,7 +218,7 @@ npm run test:e2e
 npm run test:e2e:admin
 ```
 
-O E2E exige exportação web feita **sem credenciais Supabase**, usa demo local e geolocalização simulada. `PLAYWRIGHT_CHANNEL=msedge` permite usar Edge instalado; alternativamente, o script aceita `PLAYWRIGHT_EXECUTABLE_PATH`. Testes ao vivo: `npm run test:live`, após configurar as contas e variáveis de [docs/TESTING.md](docs/TESTING.md). Não confundir mocks de Auth e contratos de plataforma PGlite com uma integração Auth/Storage completa.
+O E2E exige exportação web feita **sem credenciais Supabase** e com `EXPO_PUBLIC_DEMO_MODE=true`, usa dados locais e geolocalização simulada. Essa configuração é exclusiva do build de testes e não deve ser usada no aplicativo normal. `PLAYWRIGHT_CHANNEL=msedge` permite usar Edge instalado; alternativamente, o script aceita `PLAYWRIGHT_EXECUTABLE_PATH`. Testes ao vivo: `npm run test:live`, após configurar as contas e variáveis de [docs/TESTING.md](docs/TESTING.md). Não confundir mocks de Auth e contratos de plataforma PGlite com uma integração Auth/Storage completa.
 
 ## Fontes e decisões
 

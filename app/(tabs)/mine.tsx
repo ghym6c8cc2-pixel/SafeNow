@@ -20,7 +20,7 @@ export default function Mine() {
       {(alerts.isPending || mine.isPending) && <Loading />}
       {(alerts.isError || mine.isError) && (
         <Notice error text={friendlyError(alerts.error ?? mine.error)} />
-      )}{" "}
+      )}
       {!alerts.isPending &&
         !mine.isPending &&
         !alerts.isError &&

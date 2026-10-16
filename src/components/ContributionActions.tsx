@@ -69,7 +69,7 @@ export function ContributionActions({
   const notice = resolutionNotice(a);
   return (
     <View testID={`contribution-${a.id}`} style={{ gap: 10 }}>
-      {notice && <Notice text={notice} />}
+      {!!notice && <Notice text={notice} />}
       <Body>Sua contribuição</Body>
       <Body muted>
         Contribua somente com o que você já sabe. Não se aproxime para
@@ -178,7 +178,7 @@ export function ContributionActions({
           )}
         </>
       )}
-      {message && <Notice error={error} text={message} />}
+      {!!message && <Notice error={error} text={message} />}
     </View>
   );
 }

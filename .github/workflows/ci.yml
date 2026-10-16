@@ -13,6 +13,8 @@ jobs:
       - run: npm run check
       - run: npx expo install --check
       - run: npm run export:web
+        env:
+          EXPO_PUBLIC_DEMO_MODE: 'true'
       - run: npx expo export --platform android --output-dir dist-android
       - run: npx expo export --platform ios --output-dir dist-ios
       - run: npx playwright install --with-deps chromium --only-shell

@@ -29,7 +29,7 @@ export default function Pending() {
       {(alerts.isPending || mine.isPending) && <Loading />}
       {(alerts.isError || mine.isError) && (
         <Notice error text={friendlyError(alerts.error ?? mine.error)} />
-      )}{" "}
+      )}
       {!alerts.isPending && !alerts.isError && !items.length && (
         <Notice text="Não há alertas pendentes disponíveis para sua contribuição." />
       )}
