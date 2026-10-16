@@ -1,0 +1,30 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true,
+    "types": [
+      "node",
+      "expo/types"
+    ]
+  },
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "*.ts",
+    ".expo/types/**/*.ts",
+    "*.mts",
+    "expo-env.d.ts"
+  ],
+  "exclude": [
+    "supabase/functions",
+    "node_modules",
+    "dist",
+    "dist-android",
+    "dist-ios"
+  ]
+}

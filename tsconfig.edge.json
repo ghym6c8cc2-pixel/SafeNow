@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "npm:@supabase/supabase-js@2.117.3": [
+        "node_modules/@supabase/supabase-js/dist/index.d.mts"
+      ],
+      "npm:jpeg-js@0.4.4": ["node_modules/jpeg-js/index.d.ts"],
+      "npm:pngjs@7.0.0": ["node_modules/@types/pngjs/index.d.ts"]
+    },
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["supabase/functions/**/*.ts", "tests/deno-globals.d.ts"]
+}
